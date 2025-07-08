@@ -58,15 +58,31 @@ The application now includes an admin panel with the following capabilities:
     ```bash
     pip install -r requirements.txt
     ```
+4.  **Initialize the Database (first time setup):**
+    The application now uses an SQLite database. To create the database file (`ragam_textiles.db`) and the necessary tables, you need to initialize it. You can do this from a Python or Flask shell:
+    ```python
+    # Open a Python shell in your project directory (after activating the venv)
+    # python
+    >>> from ragam_textiles.app import app, init_db
+    >>> init_db()
+    # This will create ragam_textiles.db and print a confirmation message.
+    # Alternatively, if you set up a Flask CLI command as suggested in app.py comments:
+    # flask init-db
+    ```
+    This step only needs to be performed once. It also seeds default content for the About and Contact pages if they don't exist.
 
 ### Running the Application
 
-1.  Ensure your virtual environment is activated.
+1.  Ensure your virtual environment is activated and the database has been initialized (see step 4 above).
 2.  Run the Flask development server:
     ```bash
     python app.py
     ```
 3.  Open your web browser and navigate to `http://127.0.0.1:5000/`.
+
+## Data Storage
+
+The application uses an SQLite database (`ragam_textiles.db`) to store product information and page content. This was changed from a JSON-based storage system. Flask-SQLAlchemy is used for database interactions.
 
 ## Deployment
 
@@ -79,9 +95,9 @@ web: gunicorn app:app
 
 ## To Do / Future Enhancements
 
-*   Implement a database for products and categories.
-*   Develop the product listing and individual product detail pages.
-*   Add user authentication and accounts.
+*   Enhance database models (e.g., add categories for products, timestamps).
+*   Develop individual product detail pages (currently products link to '#').
+*   Implement more robust user authentication and authorization (beyond hardcoded admin).
 *   Implement a shopping cart and checkout functionality.
 *   Flesh out the About and Contact pages with actual content.
 *   Improve styling and user interface.
