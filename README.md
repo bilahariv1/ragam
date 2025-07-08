@@ -1,2 +1,0 @@
-# ragam
-a textile app
