@@ -1,30 +1,33 @@
 {% extends "base.html" %}
 
-{% block title %}Contact Us - Ragam Textiles{% endblock %}
+{% block title %}{{ title }} - Ragam Textiles{% endblock %}
 
 {% block content %}
-<h1>Contact Us</h1>
-<p>We'd love to hear from you!</p>
-<p>Email: info@ragamtextiles.com</p>
-<p>Phone: (555) 123-4567</p>
-<p>Address: 123 Fabric Lane, Textile City, TC 54321</p>
+<div class="container mt-5">
+    <h1>{{ title }}</h1>
+    <div class="page-content">
+        {# Using nl2br custom filter would be better if we had one, for now, this will render newlines as spaces #}
+        <p style="white-space: pre-wrap;">{{ content }}</p>
+    </div>
 
-<!-- Simple contact form placeholder -->
-<form action="#" method="post">
-    <div>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-    </div>
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-    </div>
-    <div>
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-    </div>
-    <div>
-        <button type="submit">Send Message</button>
-    </div>
-</form>
+    <!-- Simple contact form placeholder - This part is not dynamically managed by pages_content.json for now -->
+    <h3 class="mt-5">Send us a message</h3>
+    <form action="#" method="post"> {# Point this to a real endpoint if form submission is implemented #}
+        <div class="form-group mb-3">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="message">Message:</label>
+            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

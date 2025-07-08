@@ -5,9 +5,32 @@ A Flask-based web application for Ragam Textiles, an online store for exquisite 
 ## Features
 
 *   **Home Page:** Welcomes users to Ragam Textiles.
-*   **Products Page:** (Placeholder) Will display available fabric products.
-*   **About Page:** (Placeholder) Will provide information about Ragam Textiles.
-*   **Contact Page:** (Placeholder) Will offer ways to get in touch.
+*   **Products Page:** Displays available fabric products. Product listings are managed via the admin panel.
+*   **About Page:** Provides information about Ragam Textiles. Content is editable via the admin panel.
+*   **Contact Page:** Offers ways to get in touch. Content is editable via the admin panel.
+*   **Admin Section:** A password-protected area for managing products and site content.
+
+## Admin Functionality
+
+The application now includes an admin panel with the following capabilities:
+
+*   **Login/Logout:** Secure access to admin features.
+*   **Product Management:**
+    *   Add new products (name, description, price, image URL).
+    *   Edit existing products.
+    *   Delete products.
+*   **Content Management:**
+    *   Edit the title and content of the "About Us" page.
+    *   Edit the title and content of the "Contact Us" page.
+
+### Accessing the Admin Panel
+
+1.  Navigate to `/admin/login` in your browser (e.g., `http://127.0.0.1:5000/admin/login`).
+2.  Use the following default credentials:
+    *   **Username:** `admin`
+    *   **Password:** `password123`
+
+    *Note: These credentials are hardcoded in `app.py` and should be changed for a production environment.*
 
 ## Getting Started
 
