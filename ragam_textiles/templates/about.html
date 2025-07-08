@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}About Us - Ragam Textiles{% endblock %}
+{% block title %}{{ title }} - Ragam Textiles{% endblock %}
 
 {% block content %}
-<h1>About Ragam Textiles</h1>
-<p>Ragam Textiles has been a purveyor of fine fabrics since [Year Established, e.g., 1980]. We are passionate about quality and tradition.</p>
-<p>Our mission is to bring you the best textiles from around the world, focusing on craftsmanship and sustainable sourcing.</p>
+<div class="container mt-5">
+    <h1>{{ title }}</h1>
+    <div class="page-content">
+        {# Using nl2br custom filter would be better if we had one, for now, this will render newlines as spaces #}
+        <p style="white-space: pre-wrap;">{{ content }}</p>
+    </div>
+</div>
 {% endblock %}
