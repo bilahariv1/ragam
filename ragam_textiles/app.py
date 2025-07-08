@@ -7,7 +7,7 @@ app.secret_key = os.urandom(24)  # For session management
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ragam_textiles.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # silence the warning
 db = SQLAlchemy(app)
-
+print("Ragam Textiles Flask app initialized.");
 # Hardcoded admin credentials (for simplicity)
 ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "password123"
@@ -47,6 +47,8 @@ def products():
 @app.route('/about')
 def about():
     page_data = PageContent.query.filter_by(page_name='about').first()
+    print('page_data')
+    print(page_data)
     if page_data:
         return render_template('about.html', title=page_data.title, content=page_data.content)
     else:
