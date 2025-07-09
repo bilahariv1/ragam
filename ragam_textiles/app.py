@@ -3,7 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)  # For session management
+# Use a fixed secret key for session management
+app.secret_key = "your_super_secret_and_random_key_here"  # CHANGE THIS IN PRODUCTION!
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ragam_textiles.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # silence the warning
 db = SQLAlchemy(app)
@@ -69,6 +70,7 @@ def admin_login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        print('in login page')
         if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
             session['admin_logged_in'] = True
             flash('Login successful!', 'success')
