@@ -1,17 +1,9 @@
-{% extends "base.html" %}
-
-{% block title %}Admin Dashboard - Ragam Textiles{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% block title %}Admin Dashboard - Ragam Textiles{% endblock %} {% block content %}
 <div class="container mt-5">
     <h2>Admin Dashboard</h2>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %} {% endif %} {% endwith %}
 
     <p>Welcome, Admin!</p>
 
@@ -19,9 +11,11 @@
         <a href="{{ url_for('admin_products') }}" class="list-group-item list-group-item-action">
             Manage Products
         </a>
+        <br/>
         <a href="{{ url_for('admin_edit_page_content', page_name='about') }}" class="list-group-item list-group-item-action">
             Edit About Page Content
         </a>
+        <br/>
         <a href="{{ url_for('admin_edit_page_content', page_name='contact') }}" class="list-group-item list-group-item-action">
             Edit Contact Page Content
         </a>
