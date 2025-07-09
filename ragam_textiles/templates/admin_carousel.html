@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Carousel - Admin{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Manage Carousel Slides</h1>
+    <a href="{{ url_for('admin_add_carousel_slide') }}" class="btn btn-success mb-3">Add New Slide</a>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order</th>
+                <th>Image</th>
+                <th>Caption</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for slide in slides %}
+            <tr>
+                <td>{{ slide.order }}</td>
+                <td><img src="{{ slide.image_url }}" alt="{{ slide.caption if slide.caption else 'Carousel Image' }}" style="width: 150px; height: auto;"></td>
+                <td>{{ slide.caption if slide.caption else 'N/A' }}</td>
+                <td>{{ 'Yes' if slide.is_active else 'No' }}</td>
+                <td>
+                    <a href="{{ url_for('admin_edit_carousel_slide', slide_id=slide.id) }}" class="btn btn-sm btn-primary">Edit</a>
+                    <form action="{{ url_for('admin_delete_carousel_slide', slide_id=slide.id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Are you sure you want to delete this slide?');">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center">No carousel slides found. Add some!</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

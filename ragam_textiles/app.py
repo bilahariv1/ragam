@@ -33,12 +33,23 @@ class PageContent(db.Model):
     def __repr__(self):
         return f'<PageContent {self.page_name}>'
 
+class CarouselSlide(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    image_url = db.Column(db.String(255), nullable=False)
+    caption = db.Column(db.Text, nullable=True)
+    order = db.Column(db.Integer, default=0) # Lower numbers appear first
+    is_active = db.Column(db.Boolean, default=True)
+
+    def __repr__(self):
+        return f'<CarouselSlide {self.id} - {self.caption[:20]}>'
+
 
 # Old JSON file paths and import json can be removed now or after this step.
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    active_slides = CarouselSlide.query.filter_by(is_active=True).order_by(CarouselSlide.order).all()
+    return render_template('index.html', slides=active_slides)
 
 @app.route('/products')
 def products():
@@ -196,6 +207,120 @@ def admin_edit_page_content(page_name):
         current_data['content'] = page_content_entry.content
 
     return render_template('admin_edit_page.html', page_name=page_name, page_title=page_name.capitalize(), content=current_data)
+
+# Carousel Admin Routes
+UPLOAD_FOLDER_CAROUSEL = 'ragam_textiles/static/uploads/carousel_images'
+ALLOWED_EXTENSIONS_CAROUSEL = {'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER_CAROUSEL'] = UPLOAD_FOLDER_CAROUSEL
+
+def allowed_file_carousel(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS_CAROUSEL
+
+@app.route('/admin/carousel')
+@admin_required
+def admin_carousel():
+    slides = CarouselSlide.query.order_by(CarouselSlide.order).all()
+    return render_template('admin_carousel.html', slides=slides)
+
+@app.route('/admin/carousel/add', methods=['GET', 'POST'])
+@admin_required
+def admin_add_carousel_slide():
+    if request.method == 'POST':
+        caption = request.form.get('caption')
+        order = int(request.form.get('order', 0))
+        is_active = 'is_active' in request.form
+
+        if 'image' not in request.files:
+            flash('No image file part', 'danger')
+            return redirect(request.url)
+        file = request.files['image']
+        if file.filename == '':
+            flash('No selected file', 'danger')
+            return redirect(request.url)
+
+        if file and allowed_file_carousel(file.filename):
+            filename = file.filename # In a real app, use secure_filename
+            # Ensure the upload folder exists (though we created it with bash earlier)
+            os.makedirs(app.config['UPLOAD_FOLDER_CAROUSEL'], exist_ok=True)
+            image_path = os.path.join(app.config['UPLOAD_FOLDER_CAROUSEL'], filename)
+            file.save(image_path)
+            image_url = url_for('static', filename=f'uploads/carousel_images/{filename}')
+
+            new_slide = CarouselSlide(
+                image_url=image_url,
+                caption=caption,
+                order=order,
+                is_active=is_active
+            )
+            db.session.add(new_slide)
+            db.session.commit()
+            flash('Carousel slide added successfully!', 'success')
+            return redirect(url_for('admin_carousel'))
+        else:
+            flash('Invalid image file type.', 'danger')
+
+    return render_template('admin_carousel_form.html', form_action='add', slide=None)
+
+@app.route('/admin/carousel/edit/<int:slide_id>', methods=['GET', 'POST'])
+@admin_required
+def admin_edit_carousel_slide(slide_id):
+    slide = CarouselSlide.query.get_or_404(slide_id)
+    if request.method == 'POST':
+        slide.caption = request.form.get('caption')
+        slide.order = int(request.form.get('order', slide.order))
+        slide.is_active = 'is_active' in request.form
+
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and file.filename != '' and allowed_file_carousel(file.filename):
+                # Optionally, delete old image file
+                # if slide.image_url:
+                #     try:
+                #         old_image_path_segment = slide.image_url.replace(url_for('static', filename=''), '')
+                #         old_image_full_path = os.path.join(app.static_folder, old_image_path_segment)
+                #         if os.path.exists(old_image_full_path):
+                #             os.remove(old_image_full_path)
+                #     except Exception as e:
+                #         flash(f'Could not delete old image: {e}', 'warning')
+
+                filename = file.filename # Use secure_filename in production
+                os.makedirs(app.config['UPLOAD_FOLDER_CAROUSEL'], exist_ok=True)
+                image_path = os.path.join(app.config['UPLOAD_FOLDER_CAROUSEL'], filename)
+                file.save(image_path)
+                slide.image_url = url_for('static', filename=f'uploads/carousel_images/{filename}')
+            elif file.filename != '': # If a file was selected but not allowed
+                flash('Invalid image file type. Image not changed.', 'warning')
+
+
+        db.session.commit()
+        flash('Carousel slide updated successfully!', 'success')
+        return redirect(url_for('admin_carousel'))
+
+    return render_template('admin_carousel_form.html', form_action='edit', slide=slide)
+
+@app.route('/admin/carousel/delete/<int:slide_id>', methods=['POST'])
+@admin_required
+def admin_delete_carousel_slide(slide_id):
+    slide = CarouselSlide.query.get_or_404(slide_id)
+
+    # Optional: Delete the image file from the server
+    # try:
+    #     if slide.image_url:
+    #         image_path_segment = slide.image_url.replace(url_for('static', filename=''), '')
+    #         image_full_path = os.path.join(app.static_folder, image_path_segment)
+    #         if os.path.exists(image_full_path):
+    #             os.remove(image_full_path)
+    # except Exception as e:
+    #     flash(f'Could not delete image file: {e}. Slide record deleted.', 'warning')
+    # else:
+    #     flash('Image file also deleted.', 'info')
+
+
+    db.session.delete(slide)
+    db.session.commit()
+    flash('Carousel slide deleted successfully!', 'success')
+    return redirect(url_for('admin_carousel'))
 
 def init_db():
     """Initializes the database and creates tables."""
