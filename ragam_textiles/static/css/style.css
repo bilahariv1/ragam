@@ -1,4 +1,5 @@
 /* Basic styling will go here */
+
 body {
     font-family: sans-serif;
     margin: 0;
@@ -17,6 +18,15 @@ nav a {
     color: #333;
 }
 
+.mainLogo {
+    background-image: url(../../static/images/ogo.jpg);
+    background-position-x: -699px;
+    background-size: 190%;
+    background-position-y: -110px;
+    width: 87px;
+    height: 57px;
+}
+
 .container {
     padding: 1em;
 }
@@ -25,11 +35,15 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 1em 0; /* Adjusted padding */
-    /* position: fixed; bottom: 0; width: 100%; */ /* Removed fixed positioning for now */
+    padding: 1em 0;
+    /* Adjusted padding */
+    /* position: fixed; bottom: 0; width: 100%; */
+    /* Removed fixed positioning for now */
 }
 
+
 /* Basic Form Styling */
+
 form div {
     margin-bottom: 10px;
 }
@@ -46,7 +60,8 @@ textarea {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* So padding doesn't add to width */
+    box-sizing: border-box;
+    /* So padding doesn't add to width */
 }
 
 button[type="submit"] {
@@ -62,25 +77,35 @@ button[type="submit"]:hover {
     background-color: #555;
 }
 
+
 /* Utility classes */
+
 .text-center {
     text-align: center;
 }
 
+
 /* Adding some space below the main content before footer */
+
 body {
-    padding-bottom: 60px; /* Height of the footer (approx) */
+    padding-bottom: 60px;
+    /* Height of the footer (approx) */
 }
+
+
 /* Re-adding footer styling, ensuring it's at the bottom */
+
 footer {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 1em;
-    position: absolute; /* Changed from fixed to absolute */
+    position: absolute;
+    /* Changed from fixed to absolute */
     bottom: 0;
     width: 100%;
-    height: 40px; /* Give it a defined height */
+    height: 40px;
+    /* Give it a defined height */
 }
 
 html {
