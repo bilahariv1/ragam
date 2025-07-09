@@ -225,6 +225,7 @@ if __name__ == '__main__':
     # def init_db_command():
     #     init_db()
     #     click.echo("Initialized the database.")
+    app.run(debug=True)
 
 # Carousel Admin Routes
 UPLOAD_FOLDER_CAROUSEL = 'ragam_textiles/static/uploads/carousel_images'
@@ -339,5 +340,3 @@ def admin_delete_carousel_slide(slide_id):
     db.session.commit()
     flash('Carousel slide deleted successfully!', 'success')
     return redirect(url_for('admin_carousel'))
-
-    app.run(debug=True)
