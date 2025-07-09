@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 # Use a fixed secret key for session management
-app.secret_key = "your_super_secret_and_random_key_here"  # CHANGE THIS IN PRODUCTION!
+app.secret_key = "asdf_100"  # CHANGE THIS IN PRODUCTION!
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ragam_textiles.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # silence the warning
 db = SQLAlchemy(app)
