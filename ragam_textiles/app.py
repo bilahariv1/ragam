@@ -208,25 +208,6 @@ def admin_edit_page_content(page_name):
 
     return render_template('admin_edit_page.html', page_name=page_name, page_title=page_name.capitalize(), content=current_data)
 
-def init_db():
-    """Initializes the database and creates tables."""
-    with app.app_context():
-        db.create_all()
-    print("Database initialized and tables created.")
-
-if __name__ == '__main__':
-    # To initialize the database, you would typically run this from a Flask shell
-    # or a dedicated script. For example:
-    # from app import init_db
-    # init_db()
-    #
-    # Or, you can add a Flask CLI command:
-    # @app.cli.command("init-db")
-    # def init_db_command():
-    #     init_db()
-    #     click.echo("Initialized the database.")
-    app.run(debug=True)
-
 # Carousel Admin Routes
 UPLOAD_FOLDER_CAROUSEL = 'ragam_textiles/static/uploads/carousel_images'
 ALLOWED_EXTENSIONS_CAROUSEL = {'png', 'jpg', 'jpeg', 'gif'}
@@ -340,3 +321,22 @@ def admin_delete_carousel_slide(slide_id):
     db.session.commit()
     flash('Carousel slide deleted successfully!', 'success')
     return redirect(url_for('admin_carousel'))
+
+def init_db():
+    """Initializes the database and creates tables."""
+    with app.app_context():
+        db.create_all()
+    print("Database initialized and tables created.")
+
+if __name__ == '__main__':
+    # To initialize the database, you would typically run this from a Flask shell
+    # or a dedicated script. For example:
+    # from app import init_db
+    # init_db()
+    #
+    # Or, you can add a Flask CLI command:
+    # @app.cli.command("init-db")
+    # def init_db_command():
+    #     init_db()
+    #     click.echo("Initialized the database.")
+    app.run(debug=True)
