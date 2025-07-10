@@ -2,6 +2,24 @@
 
 A Flask-based web application for Ragam Textiles, an online store for exquisite fabrics.
 
+## Technology Stack
+
+*   **Backend:**
+    *   Framework: Python Flask
+    *   Database ORM: Flask-SQLAlchemy
+    *   WSGI Server: Gunicorn (for deployment)
+*   **Frontend:**
+    *   Templating: Jinja2 (server-side rendering with Flask)
+    *   Styling: Custom CSS
+    *   Client-side Scripting: Vanilla JavaScript
+*   **Database:**
+    *   Type: SQLite
+    *   File: `ragam_textiles.db` (located in the `ragam_textiles/instance/` directory)
+*   **Search Functionality:**
+    *   Currently, the application lists all products. A dedicated search feature is not yet implemented.
+*   **Hosting:**
+    *   The application is configured for deployment on platforms like Heroku using Gunicorn.
+
 ## Features
 
 *   **Home Page:** Welcomes users to Ragam Textiles.
@@ -70,6 +88,7 @@ The application now includes an admin panel with the following capabilities:
     # flask init-db
     ```
     This step only needs to be performed once. It also seeds default content for the About and Contact pages if they don't exist.
+    The database file `ragam_textiles.db` will be created in the `ragam_textiles/instance/` directory.
 
 ### Running the Application
 
@@ -80,25 +99,28 @@ The application now includes an admin panel with the following capabilities:
     ```
 3.  Open your web browser and navigate to `http://127.0.0.1:5000/`.
 
-## Data Storage
+## Data Storage Details
 
-The application uses an SQLite database (`ragam_textiles.db`) to store product information and page content. This was changed from a JSON-based storage system. Flask-SQLAlchemy is used for database interactions.
+The application uses **SQLite** as its database, managed via **Flask-SQLAlchemy**. The database file, `ragam_textiles.db`, is located in the `ragam_textiles/instance/` directory. It stores:
+*   Product information (name, description, price, image URL).
+*   Content for editable pages (About, Contact).
+*   Carousel slide information.
 
-## Deployment
+This is a change from a previous JSON-based storage system.
 
-This application includes a `Procfile` and `gunicorn` in its requirements, making it suitable for deployment on platforms like Heroku.
+## Deployment Details
 
-The `Procfile` likely contains:
-```
-web: gunicorn app:app
-```
+The application is prepared for deployment on platforms like **Heroku**.
+*   It includes `gunicorn` in `requirements.txt` as the WSGI HTTP server.
+*   A `Procfile` is present, typically containing a command like `web: gunicorn app:app` to instruct the hosting platform how to run the application.
 
 ## To Do / Future Enhancements
 
-*   Enhance database models (e.g., add categories for products, timestamps).
-*   Develop individual product detail pages (currently products link to '#').
-*   Implement more robust user authentication and authorization (beyond hardcoded admin).
+*   **Search:** Implement product search functionality.
+*   Enhance database models (e.g., add categories for products, user accounts, order history).
+*   Develop individual product detail pages.
+*   Implement robust user authentication and authorization (beyond the current hardcoded admin).
 *   Implement a shopping cart and checkout functionality.
-*   Flesh out the About and Contact pages with actual content.
-*   Improve styling and user interface.
+*   Flesh out the About and Contact pages with more detailed actual content.
+*   Improve UI/UX, possibly incorporating a frontend framework or more advanced CSS.
 ```
