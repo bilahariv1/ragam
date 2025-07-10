@@ -1,0 +1,118 @@
+/* Ragam Textiles - New Carousel Component CSS */
+/* Version 1.0.0 */
+
+.carousel-container {
+    /* Basic styling to visualize */
+    /* border: 2px solid var(--primary-color-dark, #1B365D); */ /* Using main style.css variables */
+    padding: var(--base-spacing-unit, 8px);
+    margin-bottom: calc(var(--base-spacing-unit, 8px) * 2.5); /* 20px */
+    position: relative; /* For absolute positioning of controls if needed outside wrapper */
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+    position: relative; /* Important for positioning absolute buttons if they are children */
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.3s ease-in-out; /* Enabled for JS control */
+}
+
+.carousel-slide {
+    min-width: 100%; /* Mobile first - 1 slide visible by default */
+    box-sizing: border-box;
+    /* Optional placeholder styling for slide itself */
+    /* background-color: var(--neutral-color-light-gray, #E8E8E8); */
+    /* padding: calc(var(--base-spacing-unit, 8px) * 2.5); */ /* 20px */
+    /* text-align: center; */
+    /* border: 1px solid var(--secondary-color-light, #CD853F); */
+    flex-shrink: 0; /* Prevent slides from shrinking */
+    align-self: flex-start; /* Ensure slides align at the start if they have different heights */
+}
+
+.carousel-slide img {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center images if they are smaller than slide */
+}
+
+.carousel-caption {
+    text-align: center;
+    padding: var(--base-spacing-unit, 8px);
+    font-size: 0.9rem;
+    color: var(--neutral-color-black, #333);
+    background-color: rgba(245, 245, 245, 0.8); /* WhiteSmoke with transparency */
+    margin-top: calc(var(--base-spacing-unit, 8px) / 2);
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(27, 54, 93, 0.7); /* var(--primary-color-dark) with transparency */
+    color: var(--neutral-color-white, #F5F5F5);
+    border: none;
+    padding: var(--base-spacing-unit, 8px) calc(var(--base-spacing-unit, 8px) * 1.5); /* 8px 12px */
+    cursor: pointer;
+    z-index: 10;
+    border-radius: var(--border-radius-medium, 5px);
+    font-size: 1.8rem; /* Larger arrow characters */
+    line-height: 1; /* Ensure tight fit for arrow character */
+    transition: background-color 0.2s ease;
+}
+
+.carousel-btn.prev-btn {
+    left: var(--base-spacing-unit, 8px);
+}
+
+.carousel-btn.next-btn {
+    right: var(--base-spacing-unit, 8px);
+}
+
+.carousel-btn:hover,
+.carousel-btn:focus {
+    background-color: var(--primary-color-dark, #1B365D); /* Solid on hover/focus */
+    outline: none;
+}
+.carousel-btn:focus-visible { /* Modern focus outline */
+    box-shadow: 0 0 0 2px var(--primary-color-light, #2E5984);
+}
+
+
+.carousel-indicators {
+    text-align: center;
+    padding-top: var(--base-spacing-unit, 8px);
+    margin-top: var(--base-spacing-unit, 8px);
+}
+
+.carousel-indicators .indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: var(--secondary-color-light, #CD853F);
+    border-radius: 50%;
+    margin: 0 calc(var(--base-spacing-unit, 8px) / 2); /* 4px margin */
+    cursor: pointer;
+    border: 2px solid transparent; /* For focus outline and active state */
+    padding: 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.carousel-indicators .indicator.active {
+    background-color: var(--primary-color-dark, #1B365D);
+    border-color: var(--primary-color-dark, #1B365D);
+}
+
+.carousel-indicators .indicator:hover {
+    background-color: var(--primary-color-dark, #1B365D);
+}
+
+.carousel-indicators .indicator:focus {
+    outline: none;
+}
+.carousel-indicators .indicator:focus-visible { /* Modern focus outline */
+    border-color: var(--primary-color-light, #2E5984);
+    background-color: var(--primary-color-dark, #1B365D);
+}

@@ -1,0 +1,48 @@
+{# Ragam Textiles - New Carousel Component HTML #}
+{# This component will be populated with data passed to it #}
+{# For now, it contains placeholder structure #}
+
+{% macro render_carousel(slides_data, config={}) %}
+<div class="carousel-container" id="{{ config.id | default('defaultCarousel') }}">
+    <div class="carousel-wrapper">
+        <div class="carousel-track">
+            {% if slides_data %}
+                {% for slide in slides_data %}
+                    <div class="carousel-slide">
+                        {# Content will depend on slide_data structure #}
+                        {# Example: expecting slide.image_url and slide.caption #}
+                        <img src="{{ slide.image_url | default(url_for('static', filename='images/placeholder.png')) }}" alt="{{ slide.caption | default('Carousel image') }}">
+                        {% if slide.caption %}
+                            <div class="carousel-caption">{{ slide.caption }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="carousel-slide">
+                    <p>No slides to display.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <button class="carousel-btn prev-btn" aria-label="Previous slide">‹</button> {# Using HTML entities for arrows #}
+    <button class="carousel-btn next-btn" aria-label="Next slide">›</button>
+
+    <div class="carousel-indicators">
+        {% if slides_data %}
+            {% for slide in slides_data %}
+                <button class="indicator{% if loop.first %} active{% endif %}" aria-label="Go to slide {{ loop.index }}"></button>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+<script>
+// Small script block to ensure unique IDs if multiple carousels are on a page
+// and to potentially pass data to the JS constructor if needed.
+// Full JS logic will be in new_carousel.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Placeholder for potential JS instantiation specific to this instance
+    // For example: new Carousel(document.getElementById("{{ config.id | default('defaultCarousel') }}"), {{ config | tojson }});
+});
+</script>
+{% endmacro %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% from "components/new_carousel_component.html" import render_carousel %}
+
+{% block title %}New Carousel Demo - Ragam Textiles{% endblock %}
+
+{% block content %}
+<section class="container">
+    <h1>New Carousel Component Demo</h1>
+    <p>This page demonstrates the new carousel component with various configurations.</p>
+
+    {# Carousel 1: Default settings with sample data #}
+    {% set sample_slides1 = [
+        { 'image_url': url_for('static', filename='uploads/carousel_images/sample_640x426.jpeg'), 'caption': 'Slide 1: Beautiful Fabric' },
+        { 'image_url': url_for('static', filename='uploads/carousel_images/animal-illustration-with-glasses-hipster-owl_1257429-8993.jpeg'), 'caption': 'Slide 2: Wise Owl Design' },
+        { 'image_url': url_for('static', filename='uploads/carousel_images/jpeg-home.jpg'), 'caption': 'Slide 3: Cozy Home Textiles' }
+    ] %}
+    {{ render_carousel(sample_slides1, {'id': 'carouselDemo1'}) }}
+
+    <hr style="margin: 40px 0;">
+
+    {# Carousel 2: Example with different configuration (to be implemented in JS) #}
+    {# For now, it will look the same until JS handles config #}
+    <h2>Carousel with (Future) Custom Configuration</h2>
+    <p>This instance would eventually be configured differently via JavaScript options.</p>
+    {% set sample_slides2 = [
+        { 'image_url': url_for('static', filename='images/ogo.jpg'), 'caption': 'Ragam Logo Slide A' },
+        { 'image_url': url_for('static', filename='uploads/carousel_images/sample_640x426.jpeg'), 'caption': 'Fabric Pattern B' },
+        { 'image_url': url_for('static', filename='uploads/carousel_images/animal-illustration-with-glasses-hipster-owl_1257429-8993.jpeg'), 'caption': 'Owl Print C' },
+        { 'image_url': url_for('static', filename='uploads/carousel_images/jpeg-home.jpg'), 'caption': 'Home Decor D' }
+    ] %}
+    {# Example of how config might be passed eventually #}
+    {% set carousel_config_2 = {
+        'id': 'carouselDemo2',
+        'autoPlay': False,
+        'slidesToShow': 2,
+        'infiniteLoop': False
+    } %}
+    {{ render_carousel(sample_slides2, carousel_config_2) }}
+
+</section>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }} {# Includes scripts from base.html if any #}
+    {# Link the new carousel's JS and CSS. CSS could also be in base.html if used globally #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/new_carousel.css') }}">
+    <script src="{{ url_for('static', filename='js/new_carousel.js') }}" defer></script>
+{% endblock %}

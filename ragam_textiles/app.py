@@ -340,3 +340,10 @@ if __name__ == '__main__':
     #     init_db()
     #     click.echo("Initialized the database.")
     app.run(debug=True)
+
+@app.route('/carousel-demo')
+def carousel_demo_page():
+    """Serves the demo page for the new carousel component."""
+    # You could potentially pass slide data from the database here too
+    # For now, carousel_demo.html uses hardcoded sample data
+    return render_template('carousel_demo.html')
