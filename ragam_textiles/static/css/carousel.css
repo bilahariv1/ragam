@@ -1,0 +1,167 @@
+/* Carousel Base Styles */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* Max width, can be adjusted */
+    margin: auto;
+    overflow: hidden; /* Important for containing slides */
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.carousel-wrapper {
+    overflow: hidden; /* Clips slides that are outside the view */
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.3s ease-in-out; /* Slide transition */
+    will-change: transform; /* Performance hint */
+}
+
+.carousel-slide {
+    min-width: 100%; /* Mobile first: 1 item visible */
+    box-sizing: border-box;
+    /* Add padding/margin if needed for spacing between items when multiple are visible */
+    padding: 0 calc(var(--base-spacing-unit) / 2); /* Gutter between slides */
+    display: flex; /* For content alignment if needed */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--neutral-color-light-gray); /* Placeholder bg */
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    max-height: 400px; /* Example max height, adjust as needed */
+    object-fit: cover; /* Or 'contain' depending on desired image display */
+    display: block;
+    border-radius: var(--border-radius-small);
+}
+
+.carousel-slide .carousel-caption-text {
+    font-size: 0.9rem;
+    padding: var(--base-spacing-unit) 0;
+    color: var(--neutral-color-black);
+    text-align: center;
+    width: 100%;
+}
+
+/* Navigation Buttons (Prev/Next) */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: calc(var(--base-spacing-unit) * 1.5) var(--base-spacing-unit);
+    cursor: pointer;
+    z-index: 10;
+    border-radius: var(--border-radius-medium);
+    font-size: 1.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.carousel-btn:hover, .carousel-btn:focus {
+    background-color: rgba(0, 0, 0, 0.8);
+    outline: none; /* Add custom focus style if needed */
+}
+.carousel-btn:focus-visible { /* Better focus styling */
+    box-shadow: 0 0 0 2px var(--primary-color-light);
+}
+
+
+.prev-btn {
+    left: var(--base-spacing-unit);
+}
+
+.next-btn {
+    right: var(--base-spacing-unit);
+}
+
+/* Indicator Dots */
+.carousel-indicators {
+    position: absolute;
+    bottom: var(--base-spacing-unit);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: var(--base-spacing-unit);
+    z-index: 10;
+}
+
+.indicator {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(0,0,0,0.2);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease;
+}
+
+.indicator.active, .indicator:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+.indicator:focus {
+    outline: none;
+}
+.indicator:focus-visible {
+    box-shadow: 0 0 0 2px var(--primary-color-light);
+}
+
+
+/* Responsive Breakpoints for SlidesToShow */
+
+/* Tablet: 768px - 1023px (2-3 items visible) */
+/* Let's aim for 2 items first, can be configured by JS */
+@media (min-width: 768px) {
+    /* .carousel-slide will be set by JS based on config */
+}
+
+/* Desktop: 1024px+ (3-4 items visible) */
+/* Let's aim for 3 items first, can be configured by JS */
+@media (min-width: 1024px) {
+    /* .carousel-slide will be set by JS based on config */
+}
+
+/* Large Desktop: 1440px+ (4-5 items visible) */
+/* Let's aim for 4 items first, can be configured by JS */
+@media (min-width: 1440px) {
+    /* .carousel-slide will be set by JS based on config */
+}
+
+/* CSS for when multiple slides are shown (set by JS) */
+/* Example: if 3 slides are visible */
+/* .carousel-slide.slides-3 { min-width: calc(100% / 3); } */
+
+/* Accessibility */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Reduced motion - basic example */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track {
+    transition-duration: 0.001s !important; /* Effectively none, but allows JS to detect transition end if needed */
+  }
+}
+
+/* Visually hidden class for screen reader text, if not already in global styles */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap; /* keep screen readers from reading spaces between words on separate lines */
+}
