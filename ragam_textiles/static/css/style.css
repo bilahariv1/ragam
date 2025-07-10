@@ -1,11 +1,143 @@
-/* Basic styling will go here */
+/* Ragam Textiles - Professional Style Refresh */
 
-body {
-    font-family: sans-serif;
+/* 1. Design System: Color Palette & Typography */
+/* --------------------------------------------- */
+
+:root {
+    /* Primary Colors (Deep Textile Blues) */
+    --primary-color-dark: #1B365D;
+    --primary-color-light: #2E5984;
+
+    /* Secondary Colors (Warm Fabric Tones) */
+    --secondary-color-dark: #8B4513; /* Brown */
+    --secondary-color-light: #CD853F; /* Peru */
+
+    /* Accent Colors (Gold/Brass) */
+    --accent-color-gold: #DAA520; /* Goldenrod */
+    --accent-color-brass: #B8860B; /* DarkGoldenrod */
+
+    /* Neutral Colors (Fabric Whites/Grays) */
+    --neutral-color-white: #F5F5F5; /* WhiteSmoke */
+    --neutral-color-light-gray: #E8E8E8; /* LightGray */
+    --neutral-color-medium-gray: #D3D3D3; /* Gainsboro for borders etc. */
+    --neutral-color-dark-gray: #A9A9A9; /* DarkGray for less prominent text */
+    --neutral-color-black: #333333; /* General text color */
+
+    /* Typography */
+    --font-family-headers: 'Roboto', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-family-body: 'Open Sans', 'System UI', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    --font-family-accent: 'Georgia', 'Times New Roman', Times, serif; /* Example elegant serif */
+
+    /* Font Weights */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Base Sizes & Spacing */
+    --base-font-size: 16px;
+    --base-line-height: 1.6;
+    --base-spacing-unit: 8px; /* for margins, paddings */
+
+    --border-radius-small: 3px;
+    --border-radius-medium: 5px;
+}
+
+/* Global Resets and Base Styles */
+/* ----------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+html {
+    font-size: var(--base-font-size);
+    line-height: var(--base-line-height);
+    scroll-behavior: smooth;
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-family: var(--font-family-body);
+    color: var(--neutral-color-black);
+    background-color: var(--neutral-color-white);
+    margin: 0;
+    padding-bottom: calc(var(--base-spacing-unit) * 10); /* Approx footer height */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Remove default list styles */
+ul, ol {
+    list-style: none;
+}
+
+/* Basic link styling */
+a {
+    color: var(--primary-color-light);
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: var(--primary-color-dark);
+    text-decoration: underline;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-headers);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    margin-top: calc(var(--base-spacing-unit) * 3);
+    margin-bottom: calc(var(--base-spacing-unit) * 1.5);
+    color: var(--primary-color-dark);
+}
+
+h1 { font-size: 2.5rem; } /* ~40px */
+h2 { font-size: 2rem; }   /* ~32px */
+h3 { font-size: 1.75rem; }/* ~28px */
+h4 { font-size: 1.5rem; } /* ~24px */
+h5 { font-size: 1.25rem; }/* ~20px */
+h6 { font-size: 1rem; }   /* ~16px */
+
+p {
+    margin-bottom: calc(var(--base-spacing-unit) * 2);
+}
+
+img, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Utility Classes (can be expanded) */
+/* --------------------------------- */
+.container {
+    width: 90%;
+    max-width: 1200px; /* Max desired width */
+    margin-left: auto;
+    margin-right: auto;
+    padding: calc(var(--base-spacing-unit) * 2);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.accent-text {
+    font-family: var(--font-family-accent);
+    color: var(--accent-color-brass);
+}
+
+/* Old styles to be reviewed/removed/refactored */
+/* ------------------------------------------- */
+
+/*
 nav {
     background-color: #f0f0f0;
     padding: 1em;
@@ -17,33 +149,30 @@ nav a {
     text-decoration: none;
     color: #333;
 }
+*/
 
 .mainLogo {
+    /* Revisit this with new header structure */
     background-image: url(../../static/images/ogo.jpg);
     background-position-x: -699px;
     background-size: 190%;
     background-position-y: -110px;
     width: 87px;
     height: 57px;
+    /* Consider making this an <img> tag in HTML for semantics */
 }
 
-.container {
-    padding: 1em;
-}
-
+/*
 footer {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 1em 0;
-    /* Adjusted padding */
-    /* position: fixed; bottom: 0; width: 100%; */
-    /* Removed fixed positioning for now */
 }
+*/
 
-
-/* Basic Form Styling */
-
+/* Basic Form Styling - Will be enhanced */
+/*
 form div {
     margin-bottom: 10px;
 }
@@ -61,7 +190,6 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    /* So padding doesn't add to width */
 }
 
 button[type="submit"] {
@@ -76,39 +204,447 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #555;
 }
+*/
 
-
-/* Utility classes */
-
-.text-center {
-    text-align: center;
-}
-
-
-/* Adding some space below the main content before footer */
-
-body {
-    padding-bottom: 60px;
-    /* Height of the footer (approx) */
-}
-
-
-/* Re-adding footer styling, ensuring it's at the bottom */
-
+/* Footer styling will be part of the new layout structure */
+/*
 footer {
-    background-color: #333;
-    color: white;
+    background-color: var(--neutral-color-black);
+    color: var(--neutral-color-white);
     text-align: center;
-    padding: 1em;
-    position: absolute;
-    /* Changed from fixed to absolute */
-    bottom: 0;
+    padding: calc(var(--base-spacing-unit) * 2) 0;
     width: 100%;
-    height: 40px;
-    /* Give it a defined height */
+    margin-top: auto; /* Pushes footer to bottom in flex container */
+}
+*/
+
+/* 2. Basic Layout Structure (Header, Footer, Main) */
+/* ------------------------------------------------- */
+
+.site-header {
+    background-color: var(--neutral-color-white);
+    padding: var(--base-spacing-unit) 0;
+    border-bottom: 1px solid var(--neutral-color-light-gray);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-html {
-    position: relative;
-    min-height: 100%;
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.site-logo {
+    max-height: 50px; /* Adjust as needed */
+    width: auto;
+    /* remove background-image specific styles for .mainLogo if this is used */
+}
+
+.site-title { /* Optional, if using text logo */
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color-dark);
+    text-decoration: none;
+}
+
+.main-navigation ul {
+    display: flex;
+    gap: calc(var(--base-spacing-unit) * 2.5);
+}
+
+.main-navigation a {
+    font-family: var(--font-family-headers);
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-color-light);
+    text-decoration: none;
+    padding: var(--base-spacing-unit) calc(var(--base-spacing-unit) * 1.5);
+    border-radius: var(--border-radius-small);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-navigation a:hover,
+.main-navigation a:focus,
+.main-navigation a.active { /* Add .active class dynamically for current page */
+    color: var(--neutral-color-white);
+    background-color: var(--primary-color-light);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--base-spacing-unit) * 2);
+}
+
+.header-actions .admin-link {
+    font-size: 0.9rem;
+    color: var(--secondary-color-dark);
+}
+.header-actions .admin-link:hover {
+    color: var(--accent-color-brass);
+}
+
+
+.main-content {
+    flex-grow: 1; /* Ensures main content takes up available space */
+    padding-top: calc(var(--base-spacing-unit) * 2);
+    padding-bottom: calc(var(--base-spacing-unit) * 2);
+}
+
+/* Flash Messages Styling (basic) */
+.flash-messages {
+    margin-bottom: var(--base-spacing-unit);
+    padding: var(--base-spacing-unit);
+    border-radius: var(--border-radius-medium);
+}
+.alert {
+    padding: var(--base-spacing-unit) calc(var(--base-spacing-unit)*1.5);
+    margin-bottom: var(--base-spacing-unit);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-small);
+}
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+
+.site-footer {
+    background-color: var(--primary-color-dark);
+    color: var(--neutral-color-light-gray);
+    padding: calc(var(--base-spacing-unit) * 3) 0;
+    text-align: center;
+    margin-top: auto; /* Pushes footer to the bottom of the viewport if content is short */
+    font-size: 0.9rem;
+}
+
+.site-footer p {
+    margin-bottom: calc(var(--base-spacing-unit) / 2);
+}
+
+.site-footer a {
+    color: var(--neutral-color-white);
+    text-decoration: underline;
+}
+
+.site-footer a:hover {
+    color: var(--accent-color-gold);
+}
+
+/* 3. Responsive Grid System */
+/* ------------------------- */
+/* A simple flexbox-based grid system */
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(-1 * var(--base-spacing-unit)); /* Gutter compensation */
+    margin-right: calc(-1 * var(--base-spacing-unit)); /* Gutter compensation */
+}
+
+/* Apply to direct children of .grid-container */
+.grid-item, [class*="grid-col-"] {
+    padding-left: var(--base-spacing-unit); /* Gutter */
+    padding-right: var(--base-spacing-unit); /* Gutter */
+    margin-bottom: calc(var(--base-spacing-unit) * 2); /* Vertical spacing between items */
+    width: 100%; /* Mobile first - full width */
+}
+
+/* Tablet Breakpoint (768px+) */
+@media (min-width: 768px) {
+    /* Example: 2 columns */
+    .grid-col-md-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    /* Example: 3 columns */
+    .grid-col-md-4 {
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%;
+    }
+    /* Example: 4 columns */
+    .grid-col-md-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    /* Add more as needed: md-2 (16.66%), md-8 (66.66%), md-9 (75%), md-12 (100%) */
+    .grid-col-md-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+     .grid-col-md-8 {
+        flex: 0 0 66.6666%;
+        max-width: 66.6666%;
+    }
+    .grid-col-md-2 {
+        flex: 0 0 16.6666%;
+        max-width: 16.6666%;
+    }
+}
+
+/* Desktop Breakpoint (1024px+) */
+@media (min-width: 1024px) {
+    /* Example: 2 columns */
+    .grid-col-lg-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    /* Example: 3 columns (most common for product grids) */
+    .grid-col-lg-4 {
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%;
+    }
+    /* Example: 4 columns */
+    .grid-col-lg-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    /* Example: 6 columns */
+    .grid-col-lg-2 {
+        flex: 0 0 16.6666%;
+        max-width: 16.6666%;
+    }
+    /* Add more as needed: lg-8 (66.66%), lg-9 (75%), lg-12 (100%) */
+    .grid-col-lg-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .grid-col-lg-8 {
+        flex: 0 0 66.6666%;
+        max-width: 66.6666%;
+    }
+}
+
+/* Large Desktop Breakpoint (1440px+) - Optional enhancements */
+@media (min-width: 1440px) {
+    .grid-container {
+        /* Could increase max-width of container or adjust gutters for very large screens */
+    }
+    /* Example: 5 columns for products on very large screens */
+    .grid-col-xl-1-5 { /* Custom class for 5 columns */
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+     /* Maintaining consistency with other breakpoints */
+    .grid-col-xl-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .grid-col-xl-4 {
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%;
+    }
+    .grid-col-xl-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    .grid-col-xl-2 {
+        flex: 0 0 16.6666%;
+        max-width: 16.6666%;
+    }
+    .grid-col-xl-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+/* 4. Basic Component Styling (Buttons, Forms) */
+/* ------------------------------------------- */
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    font-family: var(--font-family-headers);
+    font-weight: var(--font-weight-semibold);
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: calc(var(--base-spacing-unit) * 1.25) calc(var(--base-spacing-unit) * 2.5); /* Thumb-friendly */
+    font-size: 1rem; /* Approx 16px */
+    line-height: var(--base-line-height);
+    border-radius: var(--border-radius-medium);
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Primary Button */
+.btn-primary {
+    color: var(--neutral-color-white);
+    background-color: var(--primary-color-light);
+    border-color: var(--primary-color-light);
+}
+.btn-primary:hover, .btn-primary:focus {
+    color: var(--neutral-color-white);
+    background-color: var(--primary-color-dark);
+    border-color: var(--primary-color-dark);
+    box-shadow: 0 0 0 0.2rem rgba(46, 89, 132, 0.5); /* Primary color focus shadow */
+}
+
+/* Secondary Button */
+.btn-secondary {
+    color: var(--neutral-color-white);
+    background-color: var(--secondary-color-light);
+    border-color: var(--secondary-color-light);
+}
+.btn-secondary:hover, .btn-secondary:focus {
+    color: var(--neutral-color-white);
+    background-color: var(--secondary-color-dark);
+    border-color: var(--secondary-color-dark);
+    box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.5); /* Secondary color focus shadow */
+}
+
+/* Accent Button */
+.btn-accent {
+    color: var(--neutral-color-black);
+    background-color: var(--accent-color-gold);
+    border-color: var(--accent-color-gold);
+}
+.btn-accent:hover, .btn-accent:focus {
+    color: var(--neutral-color-black);
+    background-color: var(--accent-color-brass);
+    border-color: var(--accent-color-brass);
+    box-shadow: 0 0 0 0.2rem rgba(218, 165, 32, 0.5); /* Accent color focus shadow */
+}
+
+/* Outline Buttons */
+.btn-outline-primary {
+    color: var(--primary-color-light);
+    border-color: var(--primary-color-light);
+}
+.btn-outline-primary:hover, .btn-outline-primary:focus {
+    color: var(--neutral-color-white);
+    background-color: var(--primary-color-light);
+    box-shadow: 0 0 0 0.2rem rgba(46, 89, 132, 0.5);
+}
+
+.btn-outline-secondary {
+    color: var(--secondary-color-light);
+    border-color: var(--secondary-color-light);
+}
+.btn-outline-secondary:hover, .btn-outline-secondary:focus {
+    color: var(--neutral-color-white);
+    background-color: var(--secondary-color-light);
+    box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.5);
+}
+
+/* Button Sizes (Optional) */
+.btn-sm {
+    padding: calc(var(--base-spacing-unit) * 0.75) calc(var(--base-spacing-unit) * 1.5);
+    font-size: 0.875rem; /* Approx 14px */
+}
+
+.btn-lg {
+    padding: calc(var(--base-spacing-unit) * 1.5) calc(var(--base-spacing-unit) * 3);
+    font-size: 1.25rem; /* Approx 20px */
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: calc(var(--base-spacing-unit) * 2);
+}
+
+.form-label {
+    display: inline-block;
+    font-family: var(--font-family-headers);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--base-spacing-unit);
+    color: var(--primary-color-dark);
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: calc(var(--base-spacing-unit) * 1.25) calc(var(--base-spacing-unit) * 1.5); /* Thumb-friendly */
+    font-size: 1rem;
+    font-family: var(--font-family-body);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--base-line-height);
+    color: var(--neutral-color-black);
+    background-color: var(--neutral-color-white);
+    background-clip: padding-box;
+    border: 1px solid var(--neutral-color-medium-gray);
+    border-radius: var(--border-radius-medium);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color-light);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(46, 89, 132, 0.25); /* Primary color focus shadow, lighter */
+}
+
+textarea.form-control {
+    min-height: calc(var(--base-font-size) * var(--base-line-height) * 3 + calc(var(--base-spacing-unit) * 1.25 * 2) + 2px); /* Approx 3 lines */
+    resize: vertical;
+}
+
+/* Form help text or validation messages */
+.form-text {
+    display: block;
+    margin-top: var(--base-spacing-unit);
+    font-size: 0.875em;
+    color: var(--neutral-color-dark-gray);
+}
+
+/* Styling for existing submit buttons if they don't use .btn classes yet */
+input[type="submit"],
+button[type="submit"] { /* Assuming they might not have .btn class yet */
+    /* Apply .btn and .btn-primary styles by default to existing submit buttons */
+    display: inline-block;
+    font-family: var(--font-family-headers);
+    font-weight: var(--font-weight-semibold);
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: calc(var(--base-spacing-unit) * 1.25) calc(var(--base-spacing-unit) * 2.5);
+    font-size: 1rem;
+    line-height: var(--base-line-height);
+    border-radius: var(--border-radius-medium);
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    color: var(--neutral-color-white);
+    background-color: var(--primary-color-light);
+    border-color: var(--primary-color-light);
+}
+
+input[type="submit"]:hover, input[type="submit"]:focus,
+button[type="submit"]:hover, button[type="submit"]:focus {
+    color: var(--neutral-color-white);
+    background-color: var(--primary-color-dark);
+    border-color: var(--primary-color-dark);
+    box-shadow: 0 0 0 0.2rem rgba(46, 89, 132, 0.5);
+    text-decoration: none; /* remove underline from focus if it appears */
+}
+
+/* Remove old form styling */
+/*
+form div { margin-bottom: 10px; }
+label { display: block; margin-bottom: 5px; }
+input[type="text"], input[type="email"], textarea {
+    width: 100%; padding: 8px; border: 1px solid #ccc;
+    border-radius: 4px; box-sizing: border-box;
+}
+button[type="submit"] {
+    background-color: #333; color: white; padding: 10px 15px;
+    border: none; border-radius: 4px; cursor: pointer;
+}
+button[type="submit"]:hover { background-color: #555; }
+*/
